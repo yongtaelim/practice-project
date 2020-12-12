@@ -13,7 +13,7 @@ public class AopController {
     private final AopService aopService;        // IoC
 
     @GetMapping(value = "/aop")
-    public String aopGet() {
-        return aopService.run();
+    public String aopGet(String a) {
+        return aopService.run(a);
     }
 }

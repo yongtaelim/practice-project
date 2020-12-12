@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class AopService {
 
     @LogExcution
-    public String run() {
+    public String run(String a) {
         log.info("aop service run.");
         return "aop_service_run";
     }
