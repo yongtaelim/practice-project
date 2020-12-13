@@ -7,6 +7,7 @@ import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,8 +43,8 @@ public class RobotController {
     }
 
     @GetMapping(value = "/{robotId}")
-    public ResponseEntity robotDetail(@RequestParam(value = "robotId") final Long robotId) {
-        Robot robot = Robot.builder().build();
+    public ResponseEntity robotDetail(@PathVariable(value = "robotId") final Long robotId) {
+        Robot robot = robotService.findById(robotId);
 
         // HAL
         EntityModel<Robot> entityModel = EntityModel.of(robot);
