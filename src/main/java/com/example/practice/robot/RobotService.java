@@ -2,6 +2,9 @@ package com.example.practice.robot;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class RobotService {
 
@@ -18,6 +21,10 @@ public class RobotService {
                 .age(325)
                 .build();
 
+        return robot;
+    }
+
+    public Robot updateRobot(Robot robot) {
         return robot;
     }
 }

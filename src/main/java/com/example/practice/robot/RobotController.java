@@ -1,7 +1,6 @@
 package com.example.practice.robot;
 
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -9,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -37,9 +36,20 @@ public class RobotController {
         EntityModel<Robot> entityModel = EntityModel.of(newRobot);
         entityModel.add(linkTo(RobotController.class).withSelfRel());
         entityModel.add(linkTo(RobotController.class).slash(newRobot.getId()).withRel("detail"));
-        entityModel.add(Link.of("/animals", IanaLinkRelations.SELF).withRel("animal_info"));
 
         return ResponseEntity.created(uri).body(entityModel);
+    }
+
+    @PutMapping
+    public ResponseEntity updateRobot(@RequestBody Robot robot) {
+        Robot updateRobot = robotService.updateRobot(robot);
+
+        // HAL
+        EntityModel<Robot> entityModel = EntityModel.of(updateRobot);
+        entityModel.add(linkTo(RobotController.class).withSelfRel());
+        entityModel.add(linkTo(RobotController.class).slash(updateRobot.getId()).withRel("detail"));
+
+        return ResponseEntity.ok(entityModel);
     }
 
     @GetMapping(value = "/{robotId}")
@@ -50,7 +60,6 @@ public class RobotController {
         EntityModel<Robot> entityModel = EntityModel.of(robot);
         entityModel.add(linkTo(RobotController.class).slash(robotId).withSelfRel());
         entityModel.add(linkTo(RobotController.class).withRel("create"));
-        entityModel.add(Link.of("/animals", IanaLinkRelations.SELF).withRel("animal_info"));
         return ResponseEntity.ok(entityModel);
     }
 }
