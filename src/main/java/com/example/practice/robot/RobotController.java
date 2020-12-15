@@ -35,6 +35,7 @@ public class RobotController {
         // HAL
         EntityModel<Robot> entityModel = EntityModel.of(newRobot);
         entityModel.add(linkTo(RobotController.class).withSelfRel());
+        entityModel.add(linkTo(RobotController.class).withRel("update-robot"));
         entityModel.add(linkTo(RobotController.class).slash(newRobot.getId()).withRel("detail"));
 
         return ResponseEntity.created(uri).body(entityModel);
@@ -47,6 +48,7 @@ public class RobotController {
         // HAL
         EntityModel<Robot> entityModel = EntityModel.of(updateRobot);
         entityModel.add(linkTo(RobotController.class).withSelfRel());
+        entityModel.add(linkTo(RobotController.class).withRel("create-robot"));
         entityModel.add(linkTo(RobotController.class).slash(updateRobot.getId()).withRel("detail"));
 
         return ResponseEntity.ok(entityModel);
@@ -59,7 +61,8 @@ public class RobotController {
         // HAL
         EntityModel<Robot> entityModel = EntityModel.of(robot);
         entityModel.add(linkTo(RobotController.class).slash(robotId).withSelfRel());
-        entityModel.add(linkTo(RobotController.class).withRel("create"));
+        entityModel.add(linkTo(RobotController.class).withRel("create-robot"));
+        entityModel.add(linkTo(RobotController.class).withRel("update-robot"));
         return ResponseEntity.ok(entityModel);
     }
 }
