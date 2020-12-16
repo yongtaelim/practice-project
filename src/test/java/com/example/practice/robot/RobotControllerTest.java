@@ -1,6 +1,7 @@
 package com.example.practice.robot;
 
 import com.example.practice.common.CommonControllerTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class RobotControllerTest extends CommonControllerTest {
 
     @Test
+    @DisplayName("로봇 생성 성공 테스트")
     public void createRobot_Success_Test() throws Exception {
         Robot robot = Robot.builder()
                 .id(1L)
@@ -71,7 +73,8 @@ class RobotControllerTest extends CommonControllerTest {
     }
 
     @Test
-    void robot_detail_success_test() throws Exception {
+    @DisplayName("robot 단건 조회 테스트")
+    void queryRobot_success_test() throws Exception {
         final String url = "/api/robots/1";
 
         mockMvc.perform(get(url)

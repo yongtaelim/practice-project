@@ -1,7 +1,10 @@
 package com.example.practice.robot;
 
+import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -12,16 +15,10 @@ public class RobotService {
         return robotRepository.save(robot);
     }
 
-    public Robot findById(final Long id) {
-        // TODO :: id로 조회
-
-        Robot robot = Robot.builder()
-                .id(id)
-                .name("RobotV")
-                .age(325)
-                .build();
-
-        return robot;
+    public Robot findById(final Long id) throws NotFoundException {
+        Optional<Robot> optionalRobot = robotRepository.findById(id);
+        optionalRobot.orElseThrow(() -> new NotFoundException("id" + id));
+        return optionalRobot.get();
     }
 
     public Robot updateRobot(Robot robot) {

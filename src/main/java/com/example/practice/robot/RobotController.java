@@ -55,7 +55,7 @@ public class RobotController {
     }
 
     @GetMapping(value = "/{robotId}")
-    public ResponseEntity robotDetail(@PathVariable(value = "robotId") final Long robotId) {
+    public ResponseEntity queryRobot(@PathVariable(value = "robotId") final Long robotId) {
         Robot robot = robotService.findById(robotId);
 
         // HAL
