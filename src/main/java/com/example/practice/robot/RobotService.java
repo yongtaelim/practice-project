@@ -1,15 +1,15 @@
 package com.example.practice.robot;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class RobotService {
+    private final RobotRepository robotRepository;
 
     public Robot createRobot(final Robot robot) {
-        return robot;
+        return robotRepository.save(robot);
     }
 
     public Robot findById(final Long id) {
