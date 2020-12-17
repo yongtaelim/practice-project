@@ -19,12 +19,12 @@ import javax.persistence.Id;
 public class Robot {
 
     @Id @GeneratedValue
-    private Long id;
+    private Integer id;
     private String name;
     private Integer age;
 
     @Builder
-    public Robot(Long id, String name, Integer age) {
+    public Robot(Integer id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;

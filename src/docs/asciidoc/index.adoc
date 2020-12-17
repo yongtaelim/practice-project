@@ -104,14 +104,14 @@ operation::index[snippets='response-body,http-response,links']
 
 `GET` 요청을 사용하여 서비스의 모든 로봇을 조회할 수 있다.
 
-operation::get-robots[snippets='response-fields,curl-request,http-response,links']
+operation::query-robots[snippets='response-fields,curl-request,http-response,links']
 
 [[resources-robot-create]]
 === 로봇 생성
 
 `POST` 요청을 사용해서 새 로봇을 만들 수 있다.
 
-operation::create-robot[snippets='request-fields,curl-request,http-request,request-headers,http-response,response-headers,response-fields,links']
+include::{snippets}/create-robot/request-fields.adoc[]
 
 [[resources-robot-get]]
 === 로봇 조회

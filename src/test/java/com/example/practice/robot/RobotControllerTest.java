@@ -3,9 +3,13 @@ package com.example.practice.robot;
 import com.example.practice.common.CommonControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
@@ -21,11 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class RobotControllerTest extends CommonControllerTest {
 
+    @Autowired
+    RobotRepository robotRepository;
+
     @Test
     @DisplayName("로봇 생성 성공 테스트")
     public void createRobot_Success_Test() throws Exception {
         Robot robot = Robot.builder()
-                .id(1L)
+                .id(1)
                 .age(132)
                 .name("RobotV")
                 .build();
@@ -75,11 +82,14 @@ class RobotControllerTest extends CommonControllerTest {
     @Test
     @DisplayName("robot 단건 조회 테스트")
     void queryRobot_success_test() throws Exception {
-        final String url = "/api/robots/1";
+        //given
+        this.generateRobots(1);
 
+        //when, then
+        final String url = "/api/robots/1";
         mockMvc.perform(get(url)
-                    .contentType(MediaType.APPLICATION_JSON_UTF8)
-                    .accept(MediaTypes.HAL_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaTypes.HAL_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").exists())
@@ -88,5 +98,23 @@ class RobotControllerTest extends CommonControllerTest {
                 .andExpect(jsonPath("_links.self").exists())
                 .andExpect(jsonPath("_links.create-robot").exists())
                 .andExpect(jsonPath("_links.update-robot").exists());
+
+
+
+
+    }
+
+    private void generateRobots(Integer count) {
+        Set<Robot> robots = new HashSet<>(count);
+        for (int i = 0; i < count; i++) {
+            robots.add(
+                    Robot.builder()
+                    .id(i)
+                    .age(22)
+                    .name("robot "+i)
+                    .build()
+            );
+        }
+        robotRepository.saveAll(robots);
     }
 }

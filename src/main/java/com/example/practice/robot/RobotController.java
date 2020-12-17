@@ -1,7 +1,7 @@
 package com.example.practice.robot;
 
+import javassist.NotFoundException;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -55,11 +56,14 @@ public class RobotController {
     }
 
     @GetMapping(value = "/{robotId}")
-    public ResponseEntity queryRobot(@PathVariable(value = "robotId") final Long robotId) {
-        Robot robot = robotService.findById(robotId);
+    public ResponseEntity queryRobot(@PathVariable(value = "robotId") final Integer robotId) throws NotFoundException {
+        Optional<Robot> optionalRobot = robotService.queryRobot(robotId);
+        if(!optionalRobot.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
 
         // HAL
-        EntityModel<Robot> entityModel = EntityModel.of(robot);
+        EntityModel<Robot> entityModel = EntityModel.of(optionalRobot.get());
         entityModel.add(linkTo(RobotController.class).slash(robotId).withSelfRel());
         entityModel.add(linkTo(RobotController.class).withRel("create-robot"));
         entityModel.add(linkTo(RobotController.class).withRel("update-robot"));
