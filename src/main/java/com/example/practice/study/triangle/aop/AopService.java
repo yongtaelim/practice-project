@@ -1,4 +1,4 @@
-package com.example.practice.aop;
+package com.example.practice.study.triangle.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

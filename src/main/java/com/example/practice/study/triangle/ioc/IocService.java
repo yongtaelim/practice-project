@@ -1,4 +1,4 @@
-package com.example.practice.ioc;
+package com.example.practice.study.triangle.ioc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

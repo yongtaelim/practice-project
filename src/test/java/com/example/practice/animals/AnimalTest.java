@@ -1,6 +1,5 @@
-package com.example.practice.animal;
+package com.example.practice.animals;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

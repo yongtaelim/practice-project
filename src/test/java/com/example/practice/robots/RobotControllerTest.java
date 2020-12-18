@@ -1,4 +1,4 @@
-package com.example.practice.robot;
+package com.example.practice.robots;
 
 import com.example.practice.common.CommonControllerTest;
 import org.junit.jupiter.api.DisplayName;

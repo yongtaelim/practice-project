@@ -1,4 +1,4 @@
-package com.example.practice.psa;
+package com.example.practice.study.triangle.psa;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

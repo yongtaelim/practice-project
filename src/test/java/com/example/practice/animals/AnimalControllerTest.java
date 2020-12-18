@@ -1,4 +1,4 @@
-package com.example.practice.animal;
+package com.example.practice.animals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.example.practice.animal;
+package com.example.practice.animals;
 
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.ResponseEntity;

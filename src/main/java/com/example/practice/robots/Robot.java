@@ -1,4 +1,4 @@
-package com.example.practice.robot;
+package com.example.practice.robots;
 
 import lombok.AccessLevel;
 import lombok.Builder;

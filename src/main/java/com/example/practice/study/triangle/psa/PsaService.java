@@ -1,4 +1,4 @@
-package com.example.practice.psa;
+package com.example.practice.study.triangle.psa;
 
 import org.springframework.stereotype.Service;
 

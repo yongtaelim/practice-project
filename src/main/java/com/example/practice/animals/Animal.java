@@ -1,4 +1,4 @@
-package com.example.practice.animal;
+package com.example.practice.animals;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

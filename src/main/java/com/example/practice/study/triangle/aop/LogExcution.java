@@ -1,4 +1,4 @@
-package com.example.practice.aop;
+package com.example.practice.study.triangle.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

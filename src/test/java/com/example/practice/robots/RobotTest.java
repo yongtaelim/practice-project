@@ -1,6 +1,5 @@
-package com.example.practice.robot;
+package com.example.practice.robots;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

@@ -1,4 +1,4 @@
-package com.example.practice.robot;
+package com.example.practice.robots;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
