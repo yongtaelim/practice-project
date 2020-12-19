@@ -1,6 +1,5 @@
 package com.example.practice.robots;
 
-import com.example.practice.common.CommonControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
