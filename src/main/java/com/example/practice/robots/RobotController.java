@@ -1,6 +1,7 @@
 package com.example.practice.robots;
 
 import javassist.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -20,6 +21,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @RequestMapping(value = "/api/robots", produces = MediaTypes.HAL_JSON_VALUE)
+@RequiredArgsConstructor
 public class RobotController {
     private RobotService robotService;
 

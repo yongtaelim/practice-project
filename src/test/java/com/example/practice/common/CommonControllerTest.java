@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @Import(RestDocsConfiguration.class)
-@Disabled
+//@Disabled
 public class CommonControllerTest {
     @Autowired
     protected MockMvc mockMvc;
