@@ -1,6 +1,7 @@
 package com.example.practice.annotations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +9,7 @@ import javax.annotation.PostConstruct;
 @Component
 public class LoadMap {
 
-    @Autowired
+    @Qualifier("goodCar")
     private Car car;        // Car DI
 
     @Autowired
@@ -18,9 +19,9 @@ public class LoadMap {
     @Autowired
     private Car goodCar;
 
-    public void carPrint() {
-        car.print();
-    }
+//    public void carPrint() {
+//        car.print();
+//    }
 
     public void superCarPrint() {
         superCar.print();    // SuperCar print
@@ -33,7 +34,7 @@ public class LoadMap {
     @PostConstruct
     public void setUp() {
         System.out.println("Qualifier");
-        carPrint();
+//        carPrint();
         superCarPrint();
         goodCarPrint();
     }
