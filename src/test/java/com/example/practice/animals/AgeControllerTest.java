@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class AnimalControllerTest {
+class AgeControllerTest {
 
     @Autowired
     MockMvc mockMvc;

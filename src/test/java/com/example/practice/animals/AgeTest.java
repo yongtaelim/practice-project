@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class AnimalTest {
+public class AgeTest {
 
     @Test
     void builder_test() {
