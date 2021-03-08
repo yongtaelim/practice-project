@@ -1,5 +1,6 @@
 package com.example.practice.client;
 
+import com.example.practice.enums.JenkinsUrl;
 import com.example.practice.properties.JenkinsProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -15,14 +16,10 @@ public class JenkinsClient {
     private String endpoint;
     private MultiValueMap<String, String> postParams;
 
-    private final String BUILD = "/build";
-    private final String BUILD_WITH_PARAMS = "/buildWithParameters";
-    private final String JENKINS_URL_PATTERN = "http://%s/job/%s/%s";
-
     public JenkinsClient(JenkinsProperties properties, RestClient restClient) {
         this.properties = properties;
         this.restClient = restClient;
-        this.endpoint = BUILD;
+        this.endpoint = JenkinsUrl.BUILD.getUrl();
         this.postParams = new LinkedMultiValueMap<>();
 
         setJenkinsConfig();
@@ -39,7 +36,7 @@ public class JenkinsClient {
             jobParameters.forEach(this.postParams::set);
         }
 
-        this.endpoint = BUILD_WITH_PARAMS;
+        this.endpoint = JenkinsUrl.BUILD_WITH_PARAMS.getUrl();
     }
 
     private void setJenkinsConfig() {
@@ -51,6 +48,6 @@ public class JenkinsClient {
     }
 
     private String generateUrl(String jobName) {
-        return String.format(JENKINS_URL_PATTERN, this.properties.getUrl(), jobName, this.endpoint);
+        return String.format(JenkinsUrl.JENKINS_URL_PATTERN.getUrl(), this.properties.getUrl(), jobName, this.endpoint);
     }
 }
