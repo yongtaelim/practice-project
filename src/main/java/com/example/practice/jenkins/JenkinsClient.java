@@ -1,39 +1,35 @@
-package com.example.practice.client;
+package com.example.practice.jenkins;
 
-import com.example.practice.enums.JenkinsUrl;
+import com.example.practice.client.RestClient;
 import com.example.practice.properties.JenkinsProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import java.util.Map;
 
-@Component
 public class JenkinsClient {
     private final JenkinsProperties properties;
     private final RestClient restClient;
 
     private String endpoint;
-    private MultiValueMap<String, String> postParams;
+    private JenkinsParamCollection jenkinsParamCollection;
 
     public JenkinsClient(JenkinsProperties properties, RestClient restClient) {
         this.properties = properties;
         this.restClient = restClient;
         this.endpoint = JenkinsUrl.BUILD.getUrl();
-        this.postParams = new LinkedMultiValueMap<>();
+        this.jenkinsParamCollection = new JenkinsParamCollection(new LinkedMultiValueMap<>());
 
         setJenkinsConfig();
     }
 
     public void build(String jobName) {
         String url = generateUrl(jobName);
-
-        this.restClient.post(url, this.postParams, String.class);
+        this.restClient.post(url, this.jenkinsParamCollection, String.class);
     }
 
     public void setParameters(Map<String, String> jobParameters) {
         if (jobParameters != null) {
-            jobParameters.forEach(this.postParams::set);
+            jobParameters.forEach(this.jenkinsParamCollection::put);
         }
 
         this.endpoint = JenkinsUrl.BUILD_WITH_PARAMS.getUrl();

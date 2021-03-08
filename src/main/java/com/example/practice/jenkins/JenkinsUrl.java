@@ -1,4 +1,4 @@
-package com.example.practice.enums;
+package com.example.practice.jenkins;
 
 import lombok.Getter;
 
